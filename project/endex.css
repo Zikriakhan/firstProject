@@ -1,0 +1,944 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing:border-box;
+    font-family: arial;
+}
+:root{
+    --sideBarBackColor: rgb(213, 190, 190);
+    --textColor: #373762;
+    --sideBarProf: #202320;
+    --iconBack: rgb(120, 117, 117);
+    --backColor: #bab9e0;
+    --pcolor: #666;
+}
+/* .name{
+    color: black;
+    font-size: 100px;
+} */
+html{
+    Scroll-behavior: smooth;
+}
+body{
+    background-color: var(--backColor);
+    
+}
+::-webkit-scrollBar{
+    width: 6px;
+}
+::-webkit-scrollBar-track{
+    background-color: #ddd;
+}
+::-webkit-scrollBar-thumb{
+    background-color: var(--textColor);
+    border-radius: 10px;
+}
+
+::-moz-scrollBar{
+    width: 6px;
+}
+::-moz-scrollBar-track{
+    background-color: #ddd;
+}
+::-moz-scrollBar-thumb{
+    background-color: var(--textColor);
+    border-radius: 10px;
+}
+#Home{
+    float: right;
+    clear: both;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+
+}
+
+/*toggle*/
+#toggle{
+    position: fixed;
+    right: 1%;
+    top: 1%;
+    width: 30px;
+    height: 30px;
+    border: 2px solid white;
+    background-color: var(--backColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 1px 2px 4px var(--iconBack);
+    z-index: 11111;
+    visibility: hidden;
+}
+#toggle::before{
+    position: absolute;
+    content: '';
+    width: 80%;
+    height: 2px;
+    transform: translateY(-7px);
+    background-color: var(--textColor);
+    transition: .3s;
+}
+#toggle::after{
+    position: absolute;
+    content: '';
+    width: 80%;
+    height: 2px;
+    transform: translateY(7px);
+    background-color: var(--textColor);
+    transition: .3s;
+}
+#toggle.active::before{
+    transform: translateY(0px);
+    transform: rotate(45deg);
+}
+#toggle.active::after{
+    transform: translateY(0px);
+    transform: rotate(-45deg);
+}
+
+#sideBar{
+    position:fixed;
+    top:0%;
+    float: left;
+    height: 100%;
+    width:20%;
+    background-color: var(--sideBarProf);
+    overflow: hidden;
+    z-index: 111
+}
+#sideBar .profile-image{
+    height: 170px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    background-color:var(--sideBarProf);
+    flex-direction: column;
+    align-items: center;
+}
+#sideBar .profile-image .img{
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    margin-top: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--iconBack);
+
+}
+#sideBar .profile-image img{
+    position: absolute;
+    width: 100px;
+    left: -10px;
+    top: -5px;
+
+}
+#sideBar .profile-image span{
+    font-size: 20px;
+    font-weight: bolder;
+    font-variant: small-caps;
+    color: var(--iconBack);
+    border-radius: 20px;
+    pointer-events: none;
+
+}
+/*for icons*/
+#sideBar .icons{
+    width: 100%;	
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--sideBarProf);
+    box-shadow: 0px 5px 2px #ddd;
+}
+
+#sideBar .icons .spans{
+    width: 30px;
+    height: 30px;
+    background-color: var(--iconBack);
+    padding: 6px;
+    margin-right: 4%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+#sideBar .icons .spans:nth-last-child(1){
+    margin: 0;
+}
+#sideBar .icons .spans:hover .fac{
+    color: var(--backColor);
+}
+#sideBar .icons .spans a{
+    text-decoration: none;
+    color: black;
+}
+#sideBar .icons .spans a .fac{
+    color: var(--sideBarProf);
+    font-size: 15px;
+    transition: .3s;
+}
+/*navBar*/
+#sideBar .navBar{
+    width: 100%;
+    height: calc(100% - 40%);
+    background-color: var(--sideBarProf)
+}
+#sideBar .navBar nav{
+    width: 100%;
+    height: 100%;
+}
+#sideBar .navBar nav ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#sideBar .navBar nav ul li{
+    list-style: none;
+    width: 100%;
+    padding: 5px 10px;
+}
+#sideBar .navBar nav ul li a{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    color: var(--iconBack);
+    font-size: 15px;
+    font-weight: bold;
+    font-variant: small-caps;
+    border-radius: 20px;
+    transition: .3s;
+    border-bottom: 1px solid var(--iconBack);
+}
+#sideBar .navBar nav ul li a i{
+    margin-right: 5px;
+    transition: .2s;
+}
+#sideBar .navBar nav ul li a:hover{
+        color: var(--textColor);
+        letter-spacing: 1px;
+}
+#sideBar .navBar nav ul li a:hover i{
+    color: var(--textColor);
+}
+
+/*right_side*/
+.rightSide{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/*For left text*/
+.rightSide .intro{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    
+}
+.rightSide .intro h5{
+    color: var(--textColor);
+    margin-bottom: 5px;
+}
+.rightSide .intro h1{
+    margin-bottom: 10px;
+    color: var(--sideBarProf);
+}
+.rightSide .intro h1 span{
+    color: var(--textColor);
+}
+.rightSide .intro h3{
+    font-size: 20px;
+    color: #202320;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.rightSide .intro p{
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: black;
+    
+    /* color: var(--pcolor); */
+}
+.rightSide .intro button{
+    width: 90px;
+    border: none;
+}
+.rightSide .intro button a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    color: white;
+    padding: 10px;
+    border-radius: 2px;
+    background-color: var(--textColor);
+    transition: .3s;
+}
+.rightSide .intro button a:hover{
+    background-color: var(--sideBarProf);
+    letter-spacing: 1px;
+}
+
+
+
+/*main image*/
+.rightSide .main-image{
+    width: 37%;
+    min-width: 100px;
+    height: 100%;
+    min-height: 100px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rightSide .main-image img{
+    width: 100%;
+    object-fit: cover;
+}
+
+/*about*/
+#about{
+    width: 100%;
+    height: 100vh;
+    padding: 10px 0px 0px 10px;
+    overflow: hidden;
+}
+#about h1{
+    color: var(--textColor);
+    margin-bottom: 10px;
+}
+#about h1 span{
+    color: black;
+}
+#about .img-text{
+    display: flex;
+}
+#about .img-text .img{
+    position: relative;
+    flex-basis: 150px;
+    height: 200px;
+    padding: 5px;
+    background-color: white;
+    box-shadow: 0px 0px 7px #ccc;
+    overflow: hidden;
+    margin-right: 10px;
+}
+#about .img-text .img img{
+    width: 100%;
+    object-fit: cover;
+}
+#about .img-text .right-text{
+    flex-basis: calc(100% - 150px);
+    height: 232px;
+}
+#about .img-text .right-text p{
+    margin-bottom: 10px;
+    color: var(--pcolor);
+}
+#about .img-text .right-text .sub-container{
+    display: flex;
+    gap: 20%;
+}
+#about .img-text .right-text .sub-container .box{
+}
+#about .img-text .right-text .sub-container .box p{
+    margin-bottom: 6px;
+    color: var(--pcolor);
+}
+#about .img-text .right-text .sub-container .box p span{
+    font-weight: bold;
+    color: var(--textColor);
+}
+#about .img-text .right-text h2{
+    line-height: 30px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+#about .img-text .right-text p{
+    font-size: 13px;
+    color: var(--pcolor);
+}
+#about .img-text .right-text button{
+    margin-top: 10px;
+    border: none;
+    outline: none;
+}
+#about .img-text .right-text button a{
+    padding: 7px 10px;
+    text-decoration: none;
+    color: white;
+    background-color: var(--textColor);
+    display: inline-block;
+    transition: .3s;
+}
+#about .img-text .right-text button a:hover{
+    letter-spacing: 1px;
+    background-color: var(--sideBarProf);
+}
+#about .skill-box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+#about .skill-box .skill-name{
+    flex-basis: 60%;
+    padding: 5px;
+}
+#about .skill-box .skill-name .skills{
+    width: 100%;
+    height: 8%;
+    margin-bottom: 10px;
+}
+#about .skill-box .skill-name .skills .skill-name-percent{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+#about .skill-box .skill-name .skills .skill-name-percent span{
+    font-size: 10px;
+    font-weight: bold;
+    color: var(--pcolor);
+}
+#about .skill-box .skill-name .skills .percent-bar{
+    width: 100%;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 20px;
+}
+
+/*for skill 1,2,3*/
+#about .skill-box .skill-name .skills .percent-bar #skill1{
+    width: 90%;
+    height: 100%;
+    display: block;
+    border-radius: 20px;
+    background-color: var(--textColor);
+}
+#about .skill-box .skill-name .skills .percent-bar #skill2{
+    width: 70%;
+    height: 100%;
+    display: block;
+    border-radius: 20px;
+    background-color: var(--textColor);
+}
+#about .skill-box .skill-name .skills .percent-bar #skill3{
+    width: 80%;
+    height: 100%;
+    display: block;
+    border-radius: 20px;
+    background-color: var(--textColor);
+}
+
+/*for projects*/
+#about .skill-box .projects{
+    width: 40%;
+    height: 100%;
+    padding: 5px;
+}
+#about .skill-box .projects .card{
+    width: 100%;
+    height: 13%;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 0 2px 3px var(--iconBack);
+}
+#about .skill-box .projects .card h2{
+    color: var(--textColor);
+}
+#about .skill-box .projects .card h5{
+    font-size: small;
+    color: var(--pcolor);
+}
+
+
+/*experience*/
+#experience{
+    width: 100%;
+    height: 100vh;
+    padding: 10px 0 0 10px;	
+    overflow: hidden;
+}
+#experience h1{
+    color: var(--textColor);
+    margin-bottom: 10px;
+}
+#experience .e-box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#experience .e-box .experience-box{
+    margin-top: 20%;
+    width: 70%;
+    height:	90%;
+}
+#experience .experience-box .e-cards{
+    width: 45%;
+    height: 30%;
+    padding: 10px;
+    box-shadow: 0 5px 5px var(--iconBack);
+    background-color: #fff;
+    display: inline-block;
+    margin-left: 3%;
+    margin-bottom: 4%;
+    text-align: center;
+    border-radius: 5px;
+    cursor: default;
+
+}
+#experience .experience-box .e-cards h6{
+    background-color: var(--textColor);
+    color: white;
+    display: inline-block;
+    padding: 3px 5px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+#experience .experience-box .e-cards h4{
+    margin-bottom: 10px;
+    color: var(--textColor);
+    margin-top: 12%;
+    font-variant: small-caps;
+    font-size: 1.5rem;
+}
+
+
+
+/*Service*/
+#service{
+    width: 100%;
+    height: 100vh;
+    padding: 10px 0 0 10px;
+    overflow: hidden;
+}
+#service h1{
+    color: var(--textColor);
+    margin-bottom: 10px;
+}
+#service .s-box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10%	;
+}
+#service .s-box .service-box{
+    width: 80%;
+    height: 100%;
+}
+#service .s-box .service-box .card{
+    width: 40%;
+    height: 35%;
+    background-color: #fff;
+    padding: 10px;
+    margin-left: 5%;
+    margin-bottom: 4%;
+    display: inline-block;
+    align-items: center;
+    box-shadow: 0 5px 5px var(--iconBack);
+    border-radius: 5px;
+    overflow: hidden;
+}
+#service .service-box .card .iconDiv{
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--textColor);
+    border-radius: 50%;
+    margin-bottom: 5px;
+    font-size: x-large;
+}
+#service .service-box .card .iconDiv i{
+    color: #fff;
+}
+#service .service-box .card h4{
+    color: #333;
+    text-align: center;
+    margin: 5px;
+}
+#service .service-box .card p{
+    text-align: center;
+    font-size: .8rem;
+    color: var(--pcolor);
+}
+
+
+/*contact*/
+#contact{
+    width: 100%;
+    height: 100vh;
+    padding: 10px 0 0 10px;
+    overflow: hidden;
+}
+#contact h1{
+    color: var(--textColor);
+    margin-bottom: 10px;
+}
+
+#contact .contact-box{
+    width: 100%;
+    height: 100%;
+
+}
+#contact .contact-box .c-box{
+    width: 100%;
+    height: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3%;
+}
+#contact .contact-box .c-box .card{
+    width: 30%;
+    height: 90%;
+    background-color: #fff;
+    box-shadow: 0 5px 6px var(--iconBack);
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+}
+#contact .contact-box .c-box .card .iconDiv{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--textColor);
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+#contact .contact-box .c-box .card h4{
+    margin-bottom: 10px;
+}
+#contact .contact-box .c-box .card h6{
+    color: #333;
+}
+#contact .contact-box .feedback{
+    width: 98%;
+    height: 50%;
+    background-color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px var(--iconBack);
+}
+#contact .contact-box .feedback .input{
+    position: relative;
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+}
+#contact .contact-box .feedback .input input,textarea{
+    width: 100%;
+    padding: 15px 3px 5px 10px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid var(--iconBack);
+}
+#contact .contact-box .feedback .input span{
+    position: absolute;
+    left: 0;
+    font-size: small;
+    padding: 8px;
+    color: #888;
+    font-weight: lighter;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .2s;
+}
+#contact .contact-box .feedback .input input[type="Number"]{
+}
+#contact .contact-box .feedback .input input:valid ~ span,
+#contact .contact-box .feedback .input input:focus ~ span{
+    color: var(--textColor);
+    transform: translateX(5px) translateY(-3px);
+    font-size: 0.65em;
+    font-weight: bold;
+    padding: 0 5px;
+    border-left: 1px solid var(--textColor);
+    border-right: 1px solid var(--textColor);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+#contact .contact-box .feedback .input input:focus,
+#contact .contact-box .feedback .input input:valid{
+    border-bottom: 1px solid var(--textColor);
+}
+#contact .contact-box .feedback button{
+    width: 70px;
+    border: none;
+    color: white;
+    padding: 6px;
+    border-radius: 2px;
+    background-color: var(--textColor);
+    cursor: pointer;
+    transition: .3s;
+}
+#contact .contact-box .feedback  button:hover{
+    background-color: var(--sideBarProf);
+    letter-spacing: .5px;
+}
+
+.reveal{
+    position: relative;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 1s;
+}
+.reveal:nth-child(2){
+    transform: translateX(100px);
+}
+.reveal:nth-child(3){
+    transform: translateX(-200px);
+}
+.reveal.active{
+    transform: translateX(0px);
+    opacity: 1;
+}
+.copyright{
+    margin-top: 2%;
+    width: 100%;
+    background: var(--backColor);
+    color: var(--textColor);
+    text-align: center;
+    margin-right:10px;
+    font-size: 10px;
+    
+}
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 1118px){
+    .rightSide .intro{
+        padding: 25px;
+        font-size: 1.8rem;
+        
+    }
+    .rightSide .main-image img{
+        width: 80%;
+    }
+    
+    #experience .experience-box .e-cards{
+        height: 20%;
+    }
+    #service .s-box .service-box .card{
+        height: 20%;
+    }
+    #contact .contact-box .c-box .card{
+        width: 20%;
+        height: 60%;
+    }
+}
+@media screen and (min-width: 600px){
+    #experience .experience-box .e-cards{
+        height: 29%;
+    }
+    #service .s-box .service-box .card{
+        height: 29%;
+    }
+    #contact .contact-box .c-box .card{
+        width: 27%;
+        height: 67%;
+    }
+}
+
+@media screen and (max-width: 750px){
+    #toggle{
+        visibility: visible;
+    }
+    #toggle.active{
+        box-shadow: 1px 2px 4px var(--iconBack),
+                inset 1px 2px 2px var(--iconBack);
+    }
+    #sideBar{
+        width: 70%;
+        transform: translateX(-200%) translateY(200%);
+        border-radius: 70%;
+        opacity: 0;
+        transition: .3s;
+    }
+    #toggle.active + #sideBar{
+        transform: translateX(0%);
+        opacity: 100;
+        border-radius: 0%;
+    }
+    #Home{
+        float: none;
+        width: 100%;
+        height: 100%;
+    }
+    #about h1{
+        text-align: center;
+    }
+    #experience h1{
+        text-align: center;
+    }
+    #service h1{
+        text-align: center;
+    }
+    #contact h1{
+        text-align: center;
+    }
+}
+
+
+@media screen and (max-width: 600px){
+    .rightSide{
+        height: 100%;
+        flex-direction: column;
+    }
+    #about{
+        height: 100%;
+    }
+    #experience{
+        height: 100%;
+    }
+    #service{
+        height: 100%;
+    }
+    #contact{
+        height: 100%;
+    }
+    .rightSide .intro{
+        width: 100%;
+    }
+    #about .img-text{
+        flex-direction: column;
+    }
+    #about .img-text .right-text .sub-container{
+        flex-direction: column;
+    }
+    #about .skill-box{
+        flex-direction: column;
+    }
+    #about .skill-box .skill-name{
+        width: 100%;
+    }
+    #about .skill-box .projects{
+        width: 100%;	
+    }
+
+}
+@media screen and (max-width: 535px){
+    #service h4{
+        font-size: .9rem;
+        font-weight: bolder;
+    }
+}
+@media screen and (max-width: 450px){
+
+    #experience{
+        padding: 0;
+    }
+    #service{
+        padding: 0;
+    }
+    #contact{
+        padding: 0;
+    }
+    #about .skill-box{
+        flex-direction: column;
+    }
+    #about .skill-box .skill-name{
+        width: 100%;
+    }
+    #about .skill-box .projects{
+        width: 100%;	
+    }
+    #experience .e-box{
+        width: 100%;
+    }
+    #experience .e-box .experience-box{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+    }
+    #experience .experience-box .e-cards{
+        width: 100%;
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    #service .s-box .service-box{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 0;	
+    }
+    #service .s-box .service-box .card{
+        display: block;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    #contact .contact-box .c-box{
+        flex-direction: column;
+        height: 50%;
+    }
+    #contact .contact-box .c-box .card{
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    #contact .contact-box .c-box .card .iconDiv{
+        width: 40px;
+        height: 40px;
+    }
+    #contact textarea{
+        padding-right: 0px;
+}
+
+@media screen and (max-width: 330px){
+    .rightSide .intro{
+        font-size: .9rem;
+    }
+    #sideBar{
+        width: 100%;
+    }
+}
+}
